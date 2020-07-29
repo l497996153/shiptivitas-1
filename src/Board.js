@@ -21,34 +21,6 @@ export default class Board extends React.Component {
       complete: React.createRef(),
     }
   }
-  componentDidMount(){
-    var dragulaCards = Dragula([
-      this.swimlanes.backlog.current,
-      this.swimlanes.inProgress.current,
-      this.swimlanes.complete.current
-    ]);
-    
-    dragulaCards.on('drop', function(el, target, source, sibling){
-      var swimlane = target.previousSibling.innerHTML
-      if (swimlane === "Backlog"){
-        el.className = 'Card Card-grey';
-        el.status = "backlog";
-      }
-      else if (swimlane === "In Progress"){
-        el.className = 'Card Card-blue';
-        el.status = "in-progress";
-      }
-      else{
-        el.className = 'Card Card-green';
-        el.status = "complete";
-      }
-      console.log('el: ',el); //element
-      console.log('source: ',source); // from
-      console.log('target: ',target); // to
-      console.log('sibling: ',sibling); // next card
-    });
-  }
-
   getClients() {
     return [
       ['1','Stark, White and Abbott','Cloned Optimal Architecture', 'in-progress'],
